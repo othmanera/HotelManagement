@@ -1,0 +1,56 @@
+﻿@model Hotel_Management_Project.Models.Review
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Review</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TitleReview)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TitleReview)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DescReview)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescReview)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HOTEL.nomHotel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HOTEL.nomHotel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.username)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

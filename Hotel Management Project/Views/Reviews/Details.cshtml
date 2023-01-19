@@ -1,0 +1,50 @@
+﻿@model Hotel_Management_Project.Models.Review
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Review</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TitleReview)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TitleReview)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DescReview)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescReview)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HOTEL.nomHotel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HOTEL.nomHotel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.username)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdReview }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

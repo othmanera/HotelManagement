@@ -1,0 +1,50 @@
+﻿@model Hotel_Management_Project.Models.User
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>User</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.passwordUser)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.passwordUser)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserRole.RoleName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserRole.RoleName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

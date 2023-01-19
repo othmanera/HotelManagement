@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="hotelsManagementProjectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="HOTEL">
+    <Key>
+      <PropertyRef Name="idHotel" />
+    </Key>
+    <Property Name="idHotel" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nomHotel" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ville" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nbEtoiles" Type="Int32" />
+    <Property Name="Rating" Type="Double" />
+    <Property Name="prix" Type="Double" />
+    <Property Name="descriptionHotel" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Images" Relationship="Self.FK__Images__IdHotel__74AE54BC" FromRole="HOTEL" ToRole="Images" />
+    <NavigationProperty Name="Reviews" Relationship="Self.FK__Reviews__IdHotel__7F2BE32F" FromRole="HOTEL" ToRole="Reviews" />
+  </EntityType>
+  <EntityType Name="Image">
+    <Key>
+      <PropertyRef Name="IDimage" />
+    </Key>
+    <Property Name="IDimage" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ImageLink" Type="String" MaxLength="2048" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IdHotel" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="HOTEL" Relationship="Self.FK__Images__IdHotel__74AE54BC" FromRole="Images" ToRole="HOTEL" />
+  </EntityType>
+  <EntityType Name="Review">
+    <Key>
+      <PropertyRef Name="IdReview" />
+    </Key>
+    <Property Name="IdReview" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TitleReview" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DescReview" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="IdHotel" Type="Int32" Nullable="false" />
+    <Property Name="IdUser" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="HOTEL" Relationship="Self.FK__Reviews__IdHotel__7F2BE32F" FromRole="Reviews" ToRole="HOTEL" />
+    <NavigationProperty Name="User" Relationship="Self.FK__Reviews__IdUser__00200768" FromRole="Reviews" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="UserRole">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="Int32" Nullable="false" />
+    <Property Name="RoleName" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Users" Relationship="Self.FK__Users__RoleId__797309D9" FromRole="UserRole" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="passwordUser" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="RoleId" Type="Int32" />
+    <NavigationProperty Name="Reviews" Relationship="Self.FK__Reviews__IdUser__00200768" FromRole="Users" ToRole="Reviews" />
+    <NavigationProperty Name="UserRole" Relationship="Self.FK__Users__RoleId__797309D9" FromRole="Users" ToRole="UserRole" />
+  </EntityType>
+  <Association Name="FK__Images__IdHotel__74AE54BC">
+    <End Role="HOTEL" Type="Self.HOTEL" Multiplicity="1" />
+    <End Role="Images" Type="Self.Image" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HOTEL">
+        <PropertyRef Name="idHotel" />
+      </Principal>
+      <Dependent Role="Images">
+        <PropertyRef Name="IdHotel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Reviews__IdHotel__7F2BE32F">
+    <End Role="HOTEL" Type="Self.HOTEL" Multiplicity="1" />
+    <End Role="Reviews" Type="Self.Review" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HOTEL">
+        <PropertyRef Name="idHotel" />
+      </Principal>
+      <Dependent Role="Reviews">
+        <PropertyRef Name="IdHotel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Reviews__IdUser__00200768">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="Reviews" Type="Self.Review" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Reviews">
+        <PropertyRef Name="IdUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Users__RoleId__797309D9">
+    <End Role="UserRole" Type="Self.UserRole" Multiplicity="0..1" />
+    <End Role="Users" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRole">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="hotelsManagementProjectEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="HOTELs" EntityType="Self.HOTEL" />
+    <EntitySet Name="Images" EntityType="Self.Image" />
+    <EntitySet Name="Reviews" EntityType="Self.Review" />
+    <EntitySet Name="UserRoles" EntityType="Self.UserRole" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="FK__Images__IdHotel__74AE54BC" Association="Self.FK__Images__IdHotel__74AE54BC">
+      <End Role="HOTEL" EntitySet="HOTELs" />
+      <End Role="Images" EntitySet="Images" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Reviews__IdHotel__7F2BE32F" Association="Self.FK__Reviews__IdHotel__7F2BE32F">
+      <End Role="HOTEL" EntitySet="HOTELs" />
+      <End Role="Reviews" EntitySet="Reviews" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Reviews__IdUser__00200768" Association="Self.FK__Reviews__IdUser__00200768">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Reviews" EntitySet="Reviews" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Users__RoleId__797309D9" Association="Self.FK__Users__RoleId__797309D9">
+      <End Role="UserRole" EntitySet="UserRoles" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

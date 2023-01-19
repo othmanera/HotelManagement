@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <nav class="navbar fixed-top navbar-expand-lg bg-dark">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand text-light" href="/"> <img src="~/logo/Hotel.png" width="30px" /> </a>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item ">
+                        <a class="nav-link active text-light" aria-current="page" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="/HOTELs/list">Hotels</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled text-light"></a>
+                    </li>
+                    <li class="nav-item ">
+
+                </ul>
+
+                <!-- Search  Function-->
+                <form class="d-flex" method="GET" action="/HOTELs/Search">
+                    <input class="form-control me-2" name="q" type="search" placeholder="Search for Hotels by name or city " size="80%" aria-label="Search">
+                    <button class="btn btn-outline-light" type="submit">Search</button>
+                </form>
+                <!--  -->
+                <!--  buttons-->
+
+                @if (Session["Username"] == null)
+                {
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="margin-left: auto;">
+                        <li class="nav-item">
+                            <a class="btn btn-outline-warning" href="/users/Register"> Sign up</a>
+
+                            <a class="btn btn-outline-light" href="/users/Login"> Log in </a>
+                        </li>
+                        <!--  -->
+                    </ul>
+                }
+
+                @if ((String)Session["Username"] == "Admin")
+                {
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="margin-left: auto;">
+                        <li class="nav-item">
+                            <a class="btn btn-outline-light m-lg-1" href="/users/"> Manage Users</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="btn btn-outline-light m-lg-1" href="/Hotels/"> Manage Hotels</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="btn btn-outline-light m-lg-1" href="/Images/"> Manage Images</a>
+                        </li>
+                        <!--  -->
+                    </ul>
+                        }
+
+                </div>
+        </div>
+    </nav>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Hotellll</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

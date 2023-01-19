@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="hotelsManagementProjectModelStoreContainer" CdmEntityContainer="hotelsManagementProjectEntities1">
+    <EntitySetMapping Name="HOTELs">
+      <EntityTypeMapping TypeName="hotelsManagementProjectModel.HOTEL">
+        <MappingFragment StoreEntitySet="HOTEL">
+          <ScalarProperty Name="idHotel" ColumnName="idHotel" />
+          <ScalarProperty Name="nomHotel" ColumnName="nomHotel" />
+          <ScalarProperty Name="ville" ColumnName="ville" />
+          <ScalarProperty Name="nbEtoiles" ColumnName="nbEtoiles" />
+          <ScalarProperty Name="Rating" ColumnName="Rating" />
+          <ScalarProperty Name="prix" ColumnName="prix" />
+          <ScalarProperty Name="descriptionHotel" ColumnName="descriptionHotel" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Images">
+      <EntityTypeMapping TypeName="hotelsManagementProjectModel.Image">
+        <MappingFragment StoreEntitySet="Images">
+          <ScalarProperty Name="IDimage" ColumnName="IDimage" />
+          <ScalarProperty Name="ImageLink" ColumnName="ImageLink" />
+          <ScalarProperty Name="IdHotel" ColumnName="IdHotel" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Reviews">
+      <EntityTypeMapping TypeName="hotelsManagementProjectModel.Review">
+        <MappingFragment StoreEntitySet="Reviews">
+          <ScalarProperty Name="IdReview" ColumnName="IdReview" />
+          <ScalarProperty Name="TitleReview" ColumnName="TitleReview" />
+          <ScalarProperty Name="DescReview" ColumnName="DescReview" />
+          <ScalarProperty Name="IdHotel" ColumnName="IdHotel" />
+          <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserRoles">
+      <EntityTypeMapping TypeName="hotelsManagementProjectModel.UserRole">
+        <MappingFragment StoreEntitySet="UserRole">
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="hotelsManagementProjectModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="passwordUser" ColumnName="passwordUser" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
