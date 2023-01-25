@@ -28,8 +28,19 @@ namespace Hotel_Management_Project.Controllers
 
             return View();
         }
+        public ActionResult Admin()
+        {
 
-       
+            if ((String)Session["Username"] != "Admin")
+            {
+                return RedirectToAction("Index");
+            }
+
+            return View();
+
+        }
+
+
 
     }
 }
